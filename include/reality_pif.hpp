@@ -1,0 +1,10 @@
+#ifndef __REALITY_PIF__
+#define __REALITY_PIF__
+
+#define PIF_ROM_START 0x1FC00000
+#define PIF_ROM_END 0x1FC007BF
+
+#define PIF_JOYBUS_START 0x1FC007C0
+#define PIF_JOYBUS_END 0x1FC007FF
+
+#endif
