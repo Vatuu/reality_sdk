@@ -1,0 +1,26 @@
+{
+    "buildType": {
+        "default": "debug",
+        "choices": {
+            "debug": {
+                "short": "Debug",
+                "long": "Emit debug information without performing optimizations.",
+                "buildType": "Debug"
+            },
+            "release": {
+                "short": "release",
+                "long": "Optimize for smallest binary size.",
+                "buildType": "Release"
+            } 
+        }
+    },
+    "TARGET": {
+        "default": "ALL",
+        "choices": {
+            "ALL": {
+                "short": "All",
+                "settings": { "CMAKE_TOOLCHAIN_FILE": "CMake/toolchain.cmake" }
+            }
+        }
+    }
+}
