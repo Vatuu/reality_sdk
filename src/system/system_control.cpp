@@ -1,11 +1,9 @@
-#include <reality_cpu.hpp>
-#include <reality_rcp.hpp>
-#include <types.hpp>
+#include <reality_system.hpp>
 
-extern __osExceptionVector exception_vector;
+extern __osExceptionVector exceptionVector;
 
-u8 video_clock = VI_CLOCK_NTSC;
+u32 videoClock = VI_CLOCK_NTSC;
 
-void os_init() {
-
+void system_init() {
+    pif_send_command_await(PIF_CMD_UNFUCK);
 }

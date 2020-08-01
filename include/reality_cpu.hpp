@@ -1,6 +1,8 @@
 #ifndef __REALITY_CPU__
 #define __REALITY_CPU__
 
+#include "types.hpp"
+
 #pragma region "Coprocessor (C0) Control Registers"
 
 #define REG_C0_INDEX 0
@@ -35,6 +37,49 @@
 #define REG_C0_TAG_HIGH 29
 #define REG_C0_ERR_COUNTER 30
 #define REG_C0_UNUSED_7 31
+
+#pragma endregion
+
+#pragma region "Processor Functions" 
+
+extern void flush_dcache(void*, s32);
+extern void flush_dcache_all();
+
+#pragma endregion
+
+#pragma region "Processor Values"
+
+/* Target cache */
+#define	CACHE_INST		    0x0
+#define	CACHE_DATA		    0x1
+#define	CACHE_INST_SEC		0x2
+#define	CACHE_DATA_SEC		0x3
+
+/* Cache operations */
+#define	C_IINV		0x0	/* index invalidate (inst, 2nd inst) */
+#define	C_IWBINV	0x0	/* index writeback inval (d, sd) */
+#define	C_ILT		0x4	/* index load tag (all) */
+#define	C_IST		0x8	/* index store tag (all) */
+#define	C_CDX		0xc	/* create dirty exclusive (d, sd) */
+#define	C_HINV		0x10	/* hit invalidate (all) */
+#define	C_HWBINV	0x14	/* hit writeback inv. (d, sd) */
+#define	C_FILL		0x14	/* fill (i) */
+#define	C_HWB		0x18	/* hit writeback (i, d, sd) */
+#define	C_HSV		0x1c	/* hit set virt. (si, sd) */
+
+#define CACHE_DATA_SIZE     0x2000
+#define CACHE_DATA_LINESIZE 16
+#define CACHE_DATA_LINEMASK ( CACHE_DATA_LINESIZE - 1 )
+
+#define CACHE_INST_SIZE     0x4000
+#define CACHE_INST_LINESIZE 32
+#define CACHE_INST_LINEMASK ( CACHE_INST_LINESIZE - 1 )
+
+#pragma endregion
+
+#pragma region "Processor Utility Functions"
+
+extern u32 vAddr_to_pAddr(void*);
 
 #pragma endregion
 

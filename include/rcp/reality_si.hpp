@@ -1,6 +1,8 @@
 #ifndef __REALITY_SI__
 #define __REALITY_SI__
 
+#include "types.hpp"
+
 #pragma region "Serial Interface (SI) Registers"
 
 #define SI_BASE                 0x04800000
@@ -20,5 +22,11 @@
 #define SI_STATUS_INTERRUPT     0x1000
 
 #pragma endregion
+
+extern u32 si_get_status();
+extern IoResult si_device_available();
+extern IoResult si_io_write(u32, u32);
+extern IoResult si_io_read(u32, u32*);
+extern IoResult si_io_dma(s32, void*);
 
 #endif

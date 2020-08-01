@@ -1,6 +1,8 @@
 #ifndef __REALITY_VI__
 #define __REALITY_VI__
 
+#include "types.hpp"
+
 #pragma region "Video Interface (VI) Registers"
 
 #define VI_BASE             0x04400000
@@ -61,6 +63,57 @@
 #define VI_CLOCK_NTSC       48681812
 #define VI_CLOCK_PAL        49656530
 #define VI_CLOCK_MPAL       48628316
+
+#pragma endregion
+
+#pragma region "Video Interface (VI) Functions"
+
+extern void si_init();
+
+#pragma endregion
+
+#pragma region "Video Interface (VI) Types"
+
+typedef struct ViControlRegisters {
+    u32 control;
+    u32 width;
+    u32 burst, leap;
+    u32 vSync, hSync;
+    u32 hStart;
+    u32 xScale;
+    u32 vCurrent;
+} ViControlRegisters;
+
+typedef struct ViFieldRegisters {
+    u32 origin;
+    u32 yScale;
+    u32 vStart;
+    u32 vBurst;
+    u32 vInterrupt;
+} ViFieldRegisters;
+
+typedef struct ViMode {
+    u8 type;
+    ViControlRegisters controlRegisters;
+    ViFieldRegisters fieldRegisters[2];
+} ViMode;
+
+typedef struct ViScale {
+    f32 factor;
+    u16 offset;
+    u32 scale;
+} ViScale;
+
+typedef struct ViContext {
+    u16 state;
+    u16 retraceCount;
+    void *framePointer;
+    ViMode *modePointer;
+    u32 control;
+    //MessageQueue *msgQueue;
+    //Message msg;
+    ViScale x, y;
+} ViContext;
 
 #pragma endregion
 
