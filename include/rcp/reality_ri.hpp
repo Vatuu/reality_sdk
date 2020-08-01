@@ -1,4 +1,4 @@
- #ifndef __REALITY_RI__
+#ifndef __REALITY_RI__
 #define __REALITY_RI__
 
 #pragma region "RDRAM Registers"

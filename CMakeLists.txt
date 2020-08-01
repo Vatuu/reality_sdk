@@ -10,17 +10,17 @@ set(VERSION 0.1)
 project(
     RSDK-Core
     VERSION ${VERSION}
-    LANGUAGES C C++ ASM
+    LANGUAGES CXX C ASM
 )   
 
 set(A_NAME ${PROJECT_NAME}.a)
 
-add_executable(${A_NAME})
+file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*/*.cpp)
 
-target_sources(${A_NAME}
-    ${CMAKE_CURRENT_LIST_DIR}/src/**
-)
+add_executable(${A_NAME} ${SRC_FILES})
 
-target_include_directories(
-    ${CMAKE_CURRENT_LIST_DIR}/include/**
+target_include_directories( ${A_NAME}
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/include
+    ${CMAKE_CURRENT_LIST_DIR}/include/rcp
 )

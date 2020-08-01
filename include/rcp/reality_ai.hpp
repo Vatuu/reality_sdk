@@ -34,6 +34,6 @@
 #define AI_FREQ_MPAL_MIN    3000
 #define AI_FREQ_MPAL_MAX    368000
 
-#pragma region 
+#pragma region
 
 #endif

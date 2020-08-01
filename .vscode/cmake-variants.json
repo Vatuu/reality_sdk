@@ -19,7 +19,7 @@
         "choices": {
             "ALL": {
                 "short": "All",
-                "settings": { "CMAKE_TOOLCHAIN_FILE": "CMake/toolchain.cmake" }
+                "settings": { "CMAKE_TOOLCHAIN_FILE": "./toolchain.cmake" }
             }
         }
     }
