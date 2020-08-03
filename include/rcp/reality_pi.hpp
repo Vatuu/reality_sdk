@@ -49,14 +49,28 @@
 
 #pragma endregion
 
-#pragma region "Peripheral Interface (PI )Functions"
+#pragma region "Peripheral Interface (PI) Types" 
+
+typedef enum RomType {
+    CARTRIDGE   = 0,
+    BULK        = 1
+} RomType;
+
+#pragma endregion
+
+#pragma region "Peripheral Interface (PI) Functions"
 
 extern u32 pi_get_status();
-extern s32 pi_get_device_type();
 extern s32 pi_io_write(u32, u32);
 extern s32 pi_io_write_raw(u32, u32);
 extern s32 pi_io_read(u32, u32*);
 extern s32 pi_io_read_raw(u32, u32*);
+
+#pragma endregion
+
+#pragma region "Peripheral Interface (PI) Variables"
+
+extern RomType romType;
 
 #pragma endregion
 

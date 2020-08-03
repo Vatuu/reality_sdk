@@ -1,6 +1,6 @@
 #include <reality_cpu.hpp>
 
-void flush_dcache(void *address, s32 bytes) {
+void dcache_flush(void *address, s32 bytes) {
     if (bytes <= 0)
         return;
     
@@ -12,10 +12,14 @@ void flush_dcache(void *address, s32 bytes) {
         return;
     }
 
-    flush_dcache_all();
+    dcache_flush_all();
 }
 
-void flush_dcache_all() {
+void dcache_flush_all() {
     for(u32 i = SEG0BASE; i <= ((SEG0BASE + CACHE_DATA_SIZE) - CACHE_DATA_LINESIZE); i += CACHE_DATA_LINESIZE) 
         asm("cache %0, (%1)" :: "n" (C_IWBINV | CACHE_DATA), "r" (i) : "memory");
+}
+
+void dcache_invalidate(void *address, s32 bytes) {
+
 }

@@ -44,7 +44,7 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 set(MCPU_FLAGS "-march=vr4300 -mtune=vr4300")
 
-set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} -mno-long-calls -Wall")
+set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} -mno-long-calls -Wall -Wno-unknown-pragmas -nostdlib")
 set(CMAKE_C_CXX_FLAGS_DEBUG   "-g -ggdb3")
 set(CMAKE_C_CXX_FLAGS_RELEASE "-O2") 
 

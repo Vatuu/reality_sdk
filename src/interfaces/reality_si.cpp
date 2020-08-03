@@ -26,17 +26,18 @@ IoResult si_io_dma(DmaDirection direction, void *dramAddress) {
         return IoResult::BUSY;
 
     if(direction == DmaDirection::WRITE)
-        flush_dcache(dramAddress, 64);
+        dcache_flush(dramAddress, 64);
 
     IO_WRITE(SI_REG_ADDR_RDRAM, vAddr_to_pAddr(dramAddress));    
 
     if(direction == DmaDirection::READ) {
         IO_WRITE(SI_REG_ADDR_PIF_RD64B, 0x1FC007C0);
-        flush_dcache(dramAddress, 64);
+        dcache_invalidate(dramAddress, 64);
         return IoResult::SUCCESS;
     }
 
     IO_WRITE(SI_REG_ADDR_PIF_WD64B, 0x1FC007C0);
+
     return IoResult::SUCCESS;
 }
 
